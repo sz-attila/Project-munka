@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Collidable : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public ContactFilter2D filter;
-
     private BoxCollider2D boxCollider;
     private Collider2D[] hits = new Collider2D[10];
 
@@ -17,8 +16,8 @@ public class Collidable : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Collision work
-        boxCollider.OverlapCollider(filter, hits); // null reference expection
+        
+        boxCollider.OverlapCollider(filter, hits); 
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i] == null)
@@ -27,7 +26,7 @@ public class Collidable : MonoBehaviour
 
             OnCollide(hits[i]);
 
-            //this array is not cleaned up, so we do it ourself
+            
             hits[i] = null;
         }
     }
