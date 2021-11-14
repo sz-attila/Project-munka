@@ -11,11 +11,16 @@ public class GameManager : MonoBehaviour
         if(GameManager.instance!=null)
         {
             Destroy(gameObject);
+            Destroy(player.gameObject);
+            Destroy(floatingTextManager.gameObject);
+            Destroy(selector);
+            Destroy(weaponSelector);
+            
             return;  
         }
         instance = this;
         SceneManager.sceneLoaded += LoadState;
-        DontDestroyOnLoad(gameObject);
+        
     }
     //Resources
     public List<Sprite> playerSprites;
@@ -26,7 +31,14 @@ public class GameManager : MonoBehaviour
     //References
     public Player player;
 
+    public Weapon weapon;
+
     public FloatingTextManager floatingTextManager;
+
+    public RectTransform hitpointBar;
+    public GameObject selector;
+    public GameObject weaponSelector;
+
 
     //Logic
     public int gold;
@@ -39,25 +51,51 @@ public class GameManager : MonoBehaviour
         floatingTextManager.Show(msg,fontSize,color,position,motion,duration);
     }
 
+    //WeaponUpgrader
+    public bool TryUpgradeWeapon()
+    {
+        if(weaponPrices.Count <= weapon.weaponLevel)
+            return false;
+
+        if(gold>=weaponPrices[weapon.weaponLevel])
+        {
+            gold -= weaponPrices[weapon.weaponLevel];
+            weapon.UpgradeWeapon();
+            return true;
+        }
+
+        return false;
+    }
+
+    //HealthBar
+    public void HitPointChange()
+    {
+        float ratio = (float)player.hitpoint / (float)player.maxHitpoint;
+        hitpointBar.localScale = new Vector3(ratio,1,1);
+    }
     public void SaveState()
     {
         string s = "";
         s += "0" + "|";
         s += gold.ToString() + "|";
         s += experience.ToString() + "|";
-        s += "0";
+        s += weapon.weaponLevel.ToString();
 
         PlayerPrefs.SetString("SaveState", s);
     }
     public void LoadState(Scene scene,LoadSceneMode mode)
     {
+        Debug.Log("LoadState");
         if(!PlayerPrefs.HasKey("SaveState"))
             return;
         string[] data = PlayerPrefs.GetString("SaveState").Split('|');
 
         gold = int.Parse(data[1]);
         experience = int.Parse(data[2]);
+        weapon.SetWeaponLevel(int.Parse(data[3]));
+        
+        player.transform.position = GameObject.Find("Position").transform.position;
 
-        Debug.Log("LoadState");
+        
     }
 }

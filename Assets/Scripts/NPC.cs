@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC : Collectable
 {   
-    public string message = "PLEASE save my sister!" + "She is down there!";
+    public string message = "PLEASE save my sister! She is down there!";
     protected override void OnCollect()
     {
         if(!collected)

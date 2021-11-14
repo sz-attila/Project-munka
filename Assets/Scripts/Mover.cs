@@ -29,7 +29,6 @@ public abstract class Mover : Fighter
         pushDirection = Vector3.Lerp(pushDirection,Vector3.zero, pushRecoverySpeed);
         
 
-
         hit = Physics2D.BoxCast(transform.position,boxCollider.size, 0, new Vector2(0,moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Hero","Block"));
         if (hit.collider == null)
         {
