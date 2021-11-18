@@ -41,6 +41,12 @@ TextureImporter:
   - first:
       213: -532960962129546369
     second: herohead
+  - first:
+      213: -479236782097018826
+    second: fullheart
+  - first:
+      213: -4791017427084006217
+    second: emptyheart
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -402,7 +408,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -410,6 +416,48 @@ TextureImporter:
       bones: []
       spriteID: f733e1524da8a98f0800000000000000
       internalID: -532960962129546369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fullheart
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 242
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6305ecf8fa86959f0800000000000000
+      internalID: -479236782097018826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emptyheart
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 242
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bca3f1b803e28db0800000000000000
+      internalID: -4791017427084006217
       vertices: []
       indices: 
       edges: []

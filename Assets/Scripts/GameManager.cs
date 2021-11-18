@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public FloatingTextManager floatingTextManager;
 
     public RectTransform hitpointBar;
+    public Animator deathMenu;
     public GameObject selector;
     public GameObject weaponSelector;
 
@@ -72,6 +73,12 @@ public class GameManager : MonoBehaviour
     {
         float ratio = (float)player.hitpoint / (float)player.maxHitpoint;
         hitpointBar.localScale = new Vector3(ratio,1,1);
+    }
+    public void Respawn()
+    {
+        deathMenu.SetTrigger("Hide");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        player.Respawn();
     }
     public void SaveState()
     {
