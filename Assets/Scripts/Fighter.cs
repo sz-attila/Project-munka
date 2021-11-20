@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Fighter : MonoBehaviour
 {
-    public int life = 3;
+    public int maxLife = 3;
+    public int life;
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -21,6 +22,7 @@ public class Fighter : MonoBehaviour
     {
         if(Time.time - lastImmune > immuneTime)
         {
+            maxLife = life;
             lastImmune = Time.time;
             hitpoint -= dmg.damageAmount;
             pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
@@ -28,13 +30,15 @@ public class Fighter : MonoBehaviour
             GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.red, transform.position, Vector3.zero, 0.5f);
             if(hitpoint <= 0)
             {
-                    life -= 1;
+                    life--;
                     LifeChange();
                     hitpoint+=10;
                     transform.position = GameObject.Find("Position").transform.position;
                     if(life<=0)
                     {
                         Death();
+                        life = maxLife;
+                        
                     }
             }
             
