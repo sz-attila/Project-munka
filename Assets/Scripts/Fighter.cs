@@ -37,7 +37,7 @@ public class Fighter : MonoBehaviour
                     if(life<=0)
                     {
                         Death();
-                        life = maxLife;
+                        life +=3;
                         
                     }
             }
