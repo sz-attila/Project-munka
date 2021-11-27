@@ -30,29 +30,32 @@ public class Fighter : MonoBehaviour
             GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.red, transform.position, Vector3.zero, 0.5f);
             if(hitpoint <= 0)
             {
+                    
                     life--;
                     LifeChange();
-                    hitpoint+=10;
                     transform.position = GameObject.Find("Position").transform.position;
+                    hitpoint+=10;
                     if(life<=0)
                     {
                         Death();
-                        life +=3;
-                        
+                        life += 3;
+                        maxLife += 2;
+                         
                     }
             }
             
         }
     }
-    void LifeChange()
+    public void LifeChange()
     {
-        for (int i=0; i < hearts.Length; i++)
-        {
+            for (int i=0; i < hearts.Length; i++)
+            {
             if(i < life)
                 hearts[i].sprite = fullHeart;
             else
                 hearts[i].sprite = emptyHeart;
-        }
+            }
+               
     }
 
     protected virtual void Death()
